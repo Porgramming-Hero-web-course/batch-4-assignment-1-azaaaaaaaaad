@@ -10,13 +10,13 @@ Example: Using Callbacks
 typescript
 Copy code
 function fetchData(callback: (data: string) => void) {
-setTimeout(() => {
-callback("Fetched Data");
-}, 1000);
+  setTimeout(() => {
+    callback("Fetched Data");
+  }, 1000);
 }
 
 fetchData((data) => {
-console.log(data); // Output: Fetched Data
+  console.log(data);  // Output: Fetched Data
 });
 In this example, the fetchData function simulates an asynchronous operation (like fetching data from an API) and uses a callback function to return the data once it’s ready. While this works, callbacks can become messy and hard to maintain, especially when you need to perform multiple asynchronous tasks in a sequence.
 
@@ -27,11 +27,11 @@ Example: Callback Hell
 typescript
 Copy code
 fetchData((data1) => {
-fetchData((data2) => {
-fetchData((data3) => {
-console.log("All data:", data1, data2, data3);
-});
-});
+  fetchData((data2) => {
+    fetchData((data3) => {
+      console.log("All data:", data1, data2, data3);
+    });
+  });
 });
 As you can see, with more operations, the code becomes deeply nested, and it becomes difficult to track which data belongs to which operation. This is one of the reasons why developers sought a better way to handle asynchronous code.
 
@@ -42,15 +42,15 @@ Example: Using Promises
 typescript
 Copy code
 function fetchData(): Promise<string> {
-return new Promise((resolve) => {
-setTimeout(() => {
-resolve("Fetched Data");
-}, 1000);
-});
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Fetched Data");
+    }, 1000);
+  });
 }
 
 fetchData().then((data) => {
-console.log(data); // Output: Fetched Data
+  console.log(data);  // Output: Fetched Data
 });
 This is an improvement over callbacks because it’s easier to chain multiple asynchronous operations without deeply nesting code. However, while Promises solve the callback hell problem, they can still become a bit cumbersome when you need to handle multiple Promises or deal with complex error handling.
 
@@ -58,18 +58,18 @@ Example: Chaining Promises
 typescript
 Copy code
 fetchData()
-.then((data1) => {
-return fetchData();
-})
-.then((data2) => {
-return fetchData();
-})
-.then((data3) => {
-console.log("All data:", data1, data2, data3);
-})
-.catch((error) => {
-console.error("Error:", error);
-});
+  .then((data1) => {
+    return fetchData();
+  })
+  .then((data2) => {
+    return fetchData();
+  })
+  .then((data3) => {
+    console.log("All data:", data1, data2, data3);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
 As you can see, while the chaining is cleaner than callbacks, it still involves a .then() for each Promise, which can make it harder to read, especially with multiple operations. Additionally, error handling is done via .catch(), which can sometimes lead to unhandled errors if you forget to add it.
 
 Enter async/await: The Cleaner, Simpler Approach
@@ -82,16 +82,16 @@ Example: Using async/await
 typescript
 Copy code
 async function fetchData(): Promise<string> {
-return new Promise((resolve) => {
-setTimeout(() => {
-resolve("Fetched Data");
-}, 1000);
-});
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Fetched Data");
+    }, 1000);
+  });
 }
 
 async function getData() {
-const data = await fetchData();
-console.log(data); // Output: Fetched Data
+  const data = await fetchData();
+  console.log(data);  // Output: Fetched Data
 }
 
 getData();
@@ -104,17 +104,17 @@ Example: Sequential Async Operations
 typescript
 Copy code
 async function fetchUserData(): Promise<string> {
-return new Promise((resolve) => setTimeout(() => resolve("User Data"), 1000));
+  return new Promise((resolve) => setTimeout(() => resolve("User Data"), 1000));
 }
 
 async function fetchPosts(): Promise<string> {
-return new Promise((resolve) => setTimeout(() => resolve("Posts Data"), 1000));
+  return new Promise((resolve) => setTimeout(() => resolve("Posts Data"), 1000));
 }
 
 async function fetchAllData() {
-const userData = await fetchUserData();
-const postsData = await fetchPosts();
-console.log(userData, postsData); // Output: User Data Posts Data
+  const userData = await fetchUserData();
+  const postsData = await fetchPosts();
+  console.log(userData, postsData);  // Output: User Data Posts Data
 }
 
 fetchAllData();
@@ -126,11 +126,11 @@ When you want to execute multiple asynchronous operations in parallel (i.e., the
 typescript
 Copy code
 async function fetchAllData() {
-const [userData, postsData] = await Promise.all([
-fetchUserData(),
-fetchPosts(),
-]);
-console.log(userData, postsData); // Output: User Data Posts Data
+  const [userData, postsData] = await Promise.all([
+    fetchUserData(),
+    fetchPosts(),
+  ]);
+  console.log(userData, postsData);  // Output: User Data Posts Data
 }
 
 fetchAllData();
@@ -143,18 +143,18 @@ Example: Error Handling with try/catch
 typescript
 Copy code
 async function fetchDataWithError(): Promise<string> {
-return new Promise((\_, reject) => {
-setTimeout(() => reject("Something went wrong"), 1000);
-});
+  return new Promise((_, reject) => {
+    setTimeout(() => reject("Something went wrong"), 1000);
+  });
 }
 
 async function getData() {
-try {
-const data = await fetchDataWithError();
-console.log(data);
-} catch (error) {
-console.error("Error:", error); // Output: Error: Something went wrong
-}
+  try {
+    const data = await fetchDataWithError();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);  // Output: Error: Something went wrong
+  }
 }
 
 getData();
