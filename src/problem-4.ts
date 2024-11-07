@@ -11,10 +11,9 @@
     width: number;
     height: number;
   };
-  type Shape = Circle | Rectangle;
-
   //   type guard
-
+  type Shape = Circle | Rectangle;
+  
   const isCircle = (shape: Shape): shape is Circle => shape.shape === `circle`;
   const isRectangle = (shape: Shape): shape is Rectangle =>
     shape.shape === `rectangle`;
