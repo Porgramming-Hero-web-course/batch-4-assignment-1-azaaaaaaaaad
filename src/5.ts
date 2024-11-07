@@ -5,7 +5,7 @@
   };
 
   const person = {
-    name: "Alice",
+    name: "Azad",
     age: 30,
     isAdmin: true,
   };
