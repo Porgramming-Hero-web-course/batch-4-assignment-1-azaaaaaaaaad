@@ -21,8 +21,8 @@
     email: "azad@azadddddd.com",
   });
 
-  //   console.log(updatedProfile);
-  const partialUpdate = updateProfile(profile, { name: "Azad" });
 
+  const partialUpdate = updateProfile(profile, { name: "Azad" });
+  //   console.log(updatedProfile);
   //   console.log(partialUpdate);
 }
