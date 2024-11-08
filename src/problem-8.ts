@@ -12,6 +12,6 @@
   const invalidKeys: (keyof typeof person)[] = ["name", "age", "address"];
   const result2 = validateKeys(person, invalidKeys);
 
-  console.log(result1);
-  console.log(result2);
+  // console.log(result1);
+  // console.log(result2);
 }
