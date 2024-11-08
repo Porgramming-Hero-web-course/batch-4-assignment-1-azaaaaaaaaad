@@ -14,7 +14,7 @@
   const age = getProperty(person, "age");
   const isAdmin = getProperty(person, "isAdmin");
 
-  console.log(name);
-  console.log(age);
-  console.log(isAdmin);
+  // console.log(name);
+  // console.log(age);
+  // console.log(isAdmin);
 }
